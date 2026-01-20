@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #f5f1ea;
+  --foreground: #1f262b;
+  --ink-soft: #4a5560;
+  --accent: #3c5b4a;
+  --accent-soft: #dbe4d9;
+  --surface: #fbf8f3;
+  --surface-elevated: #ffffff;
+  --surface-muted: #efe9e1;
+  --border-soft: rgba(120, 130, 138, 0.22);
+  --font-body: "Manrope", "Avenir Next", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+  --font-heading: var(--font-body);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
