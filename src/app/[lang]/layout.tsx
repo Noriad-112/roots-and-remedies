@@ -4,27 +4,27 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { getDictionary, isValidLanguage, type Language } from "@/lib/i18n";
 
-export default function LangLayout({
-  children,
-  params,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  params: { lang: string };
-}) {
-  if (!isValidLanguage(params.lang)) {
+  params: Promise<{ lang: string }>;
+};
+
+export default async function Layout({ children, params }: LayoutProps) {
+  const { lang } = await params;
+  if (!isValidLanguage(lang)) {
     notFound();
   }
 
-  const lang = params.lang as Language;
-  const dict = getDictionary(lang);
+  const currentLang = lang as Language;
+  const dict = getDictionary(currentLang);
 
   return (
-    <div lang={lang} className="min-h-screen bg-[color:var(--background)]">
-      <SiteHeader lang={lang} labels={dict.nav} />
+    <div lang={currentLang} className="min-h-screen bg-[color:var(--background)]">
+      <SiteHeader lang={currentLang} labels={dict.nav} />
       <main className="mx-auto w-full max-w-6xl px-6 py-12 sm:py-16">
         {children}
       </main>
-      <SiteFooter lang={lang} labels={dict.nav} />
+      <SiteFooter lang={currentLang} labels={dict.nav} />
     </div>
   );
 }
