@@ -1,7 +1,7 @@
 export const site = {
   name: "Roots & Remedies",
   legalName: "Roots & Remedies Stichting",
-  baseUrl: "https://rootsandremedies.earth",
+  baseUrl: "https://rootsandremedies.nl",
   ogImage: "/og-image.png",
-  contactEmail: "hello@rootsandremedies.earth",
+  contactEmail: "hello@rootsandremedies.nl",
 };
