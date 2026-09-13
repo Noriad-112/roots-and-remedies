@@ -1,4 +1,4 @@
-# Deploy Report — Copilot Ventures Site
+# Deploy Report — Roots & Remedies Site
 
 ## Build status
 - Lint: pass (eslint)

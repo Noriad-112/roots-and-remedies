@@ -1,11 +1,15 @@
-# Handoff — Copilot Ventures Site
+# Handoff — Roots & Remedies Site
 
 ## Project status
-- Domain: `www.copilot.earth` resolves and serves (Vercel 200). Apex redirects to www.
-- Routes: `/`, `/approach`, `/ventures`, `/services`, `/about`, `/contact`, plus `/meta.json` and `/feed.json`.
-- AI‑agent native: Organization + WebPage JSON‑LD; Person on About; ContactAction on Contact.
-- Contact email: `contact@copilot.earth` (obfuscated in UI copy).
-- Build + lint: last run passed.
+- Bilingual (EN/NL) site; `/` redirects to `/en`.
+- Routes under `/[lang]`: mission, ecosystem, projects (+ project detail),
+  journal (+ post detail), contact; plus `/meta.json`, `/feed.json`,
+  `/sitemap.xml`, `/robots.txt`.
+- SEO metadata and JSON-LD are built in `src/lib/metadata.ts`.
+- Domain: production is **`rootsandremedies.nl`** (config updated; attaching the
+  domain to the Vercel project is a deploy-time step). The older
+  `rootsandremedies.earth` is retired.
+- Contact email: `hello@rootsandremedies.nl`.
 
 ## Quick start
 ```bash
@@ -15,26 +19,28 @@ npm run dev
 
 ## Suggested next steps
 1) **Brand assets**
-   - Add real logo at `/public/logo.png` (or update `src/lib/seo.ts` to correct path).
-   - Add real OG image at `/public/og-image.png` (update `src/lib/site.ts` if needed).
-2) **Feed content**
-   - Populate `src/app/feed.json/route.ts` with real items (or wire it to CMS/data).
+   - Add a real OG image at `/public/og-image.png` (referenced from `src/lib/site.ts` / `src/content/site.ts`).
+2) **Journal content**
+   - Add or edit posts under `src/content/journal/{en,nl}/*.mdx`.
 3) **Meta endpoint**
-   - Review `src/app/meta.json/route.ts` services list if copy changes.
+   - Review `src/app/meta.json/route.ts` if summary copy changes.
 4) **Analytics / privacy**
    - Decide on analytics (Plausible, Umami, Vercel Analytics) and privacy policy placement.
 5) **Content polish**
-   - Minor copy refinements only (keep advisory‑studio positioning; no holding‑company claims).
+   - Refine EN/NL copy in `src/content/i18n.ts`; keep both languages in sync.
 6) **QA checklist**
-   - Mobile nav open/close, focus states, contact form validation, and JSON‑LD not visible in UI.
+   - Language toggle, mobile nav open/close, focus states, contact form validation,
+     and JSON-LD not visible in the UI.
 
 ## Key files to know
-- Site config: `src/lib/site.ts`
-- SEO helpers + JSON‑LD: `src/lib/seo.ts`, `src/components/seo/JsonLd.tsx`
-- Layout + global styles: `src/app/layout.tsx`, `src/app/globals.css`
-- Pages: `src/app/page.tsx`, `src/app/*/page.tsx`
+- Site config: `src/lib/site.ts`, `src/content/site.ts`
+- i18n: `src/lib/i18n.ts`, `src/content/i18n.ts`
+- Ecosystem/projects: `src/content/ecosystem.ts`
+- Journal: `src/lib/journal.ts`, `src/content/journal/*`
+- Layout + styles: `src/app/layout.tsx`, `src/app/[lang]/layout.tsx`, `src/app/globals.css`
+- Components: `src/components/site/*`
 - Machine endpoints: `src/app/meta.json/route.ts`, `src/app/feed.json/route.ts`
 
 ## Constraints reminder
-- Copilot Ventures is an **advisory studio**, not a holding company.
-- Single allowed Fento mention: About page bio only.
+- Roots & Remedies is a nonprofit foundation (stichting) that stewards an
+  ecosystem of regenerative projects and shared intellectual property.
